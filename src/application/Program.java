@@ -18,8 +18,8 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
-		System.out.print("Enter department's name: ");		
+
+		System.out.print("Enter department's name: ");
 		String departmentName = sc.nextLine();
 		System.out.println("Enter worker data:");
 		System.out.print("Name: ");
@@ -28,13 +28,14 @@ public class Program {
 		String workerLevel = sc.nextLine();
 		System.out.print("Base salary: ");
 		double baseSalary = sc.nextDouble();
-		Worker worker = new Worker(workerName, WorkerLevel.valueOf(workerLevel), baseSalary, new Department(departmentName));
-		
+		Worker worker = new Worker(workerName, WorkerLevel.valueOf(workerLevel), baseSalary,
+				new Department(departmentName));
+
 		System.out.print("How many contracts to this worker? ");
 		int n = sc.nextInt();
-		
-		for (int i=1; i<=n; i++) {
-			System.out.println("Enter contract #" + i +  " data: ");
+
+		for (int i = 1; i <= n; i++) {
+			System.out.println("Enter contract #" + i + " data: ");
 			System.out.print("Date (DD/MM/YYYY): ");
 			Date contractDate = sdf.parse(sc.next());
 			System.out.print("Value per hour: ");
@@ -44,7 +45,7 @@ public class Program {
 			HourContract hourContract = new HourContract(duration, contractDate, valuePerHour);
 			worker.addContract(hourContract);
 		}
-		
+
 		System.out.println();
 		System.out.print("Enter month and year to calculate income (MM/YYYY): ");
 		String monthAndYear = sc.next();
@@ -53,7 +54,7 @@ public class Program {
 		System.out.println("Name: " + worker.getName());
 		System.out.println("Department: " + worker.getDepartment().getName());
 		System.out.println("Income for " + monthAndYear + ": " + String.format("%.2f%n", worker.income(year, month)));
-		
+
 		sc.close();
 	}
 
